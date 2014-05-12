@@ -9,15 +9,8 @@
   },
   "devDependencies": {
     "grunt"                      : "*",
-    "bower"                      : "*",
-    "grunt-contrib-cssmin"       : "*",
-    "grunt-contrib-less"         : "*",
-    "grunt-contrib-sass"         : "*",
-    "grunt-cssc"                 : "*",
     "grunt-jslint"               : "*",
     "grunt-contrib-uglify"       : "*",
-    "grunt-htmlhint"             : "*",
-    "grunt-contrib-htmlmin"      : "*",
     "grunt-contrib-watch"        : "*",
     "grunt-contrib-copy"         : "*",
     "grunt-contrib-clean"        : "*",
@@ -30,18 +23,13 @@
     "karma-junit-reporter"       : "~0.1",
     "grunt-protractor-runner"    : "*",
     "grunt-protractor-webdriver" : "*",
-    "connect-livereload"         : "*",
-    "grunt-contrib-connect"      : "*",
-    "grunt-open"                 : "*",
-    "moment"                     : "*",
-    "grunt-usemin"               : "*",
-    "grunt-contrib-csslint"      : "*",
     "time-grunt"                 : "*",
-
-
-    "grunt-express-server": "*",
-    "grunt-nodemon": "*",
-    "express": "*"
+    "express"                    : "*",
+    "body-parser"                : "*",
+    "morgan"                     : "*",
+    "socket.io"                  : "*",
+    "socket.io-client"           : "*",
+    "q"                          : "*"
   },
   "engines": {
     "node": ">=0.8.0"
