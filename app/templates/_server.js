@@ -1,26 +1,14 @@
+var Q = require("q");
 var express = require('express');
 var routes = require('./routes/routes.js');
-
-var morgan = require('morgan');
-var bodyParser = require('body-parser');
-
-var app = express();
-
-var server = require('http').createServer(app);
-var io = require('socket.io').listen(server);
-
-app.use(morgan());
-app.use(bodyParser());
-
-
-
-
-var Q = require("q");
 
 var defer = Q.defer();
 var promise = defer.promise;
 
-// flujo
+
+
+
+// Promise example.
 
 promise.then(function(val) {
     console.log("val:", val);
@@ -41,24 +29,79 @@ promise.then(function(val) {
     console.log(error);
 });
 
-// estado
-
-defer.resolve(9);
+defer.resolve(42);
 
 
 
 
 
-io.sockets.on('connection', function (socket) {
-    socket.emit('news', { hello: 'world' });
-    socket.on('my other event', function (data) {
+var morgan = require('morgan');
+var bodyParser = require('body-parser');
+
+var app = express();
+
+var http = require('http');
+var server = http.createServer(app);
+var io = require('socket.io').listen(server);
+
+app.use(morgan());
+app.use(bodyParser());
+
+var socketsOpened = {};
+
+io.of('/direct').on('connection', function (socket) {
+
+    socket.emit('ping');
+
+    socket.on('pong',function (data) {
+        socket.unique_id = data.unique_id;
+        socketsOpened[data.unique_id] = socket;
+        console.log(socketsOpened);
         console.log(data);
+    });
+
+    socket.on('disconnect',function() {
+        console.log('Socket disconected!');
     });
 });
 
-
-
 app.get('/', routes.index);
+
+app.get('/sockets/:unique_id', function (request, response) {
+    var unique_id = request.params.unique_id;
+    socketsOpened[unique_id].emit('serverResponse', 'Well done!');
+    response.send('Done!');
+});
+
+
+var serverHandler = {
+    testCall: function () {
+        var options = {
+            host: '10.110.2.142',
+            port: 80,
+            path: '/admin/users',
+            method: 'GET'
+        };
+
+        var req = http.request(options, function (res) {
+            console.log('STATUS: ' + res.statusCode);
+            console.log('HEADERS: ' + JSON.stringify(res.headers));
+            res.setEncoding('utf8');
+            res.on('data', function (chunk) {
+                console.log('BODY: ' + chunk);
+            });
+        });
+
+        req.on('error', function(e) {
+            console.log('problem with request: ' + e.message);
+        });
+
+        req.end();
+    }
+};
+
+serverHandler.testCall();
+
 
 
 
@@ -71,8 +114,8 @@ app.use(function (err, req, res, next) {
     res.send(500, 'Server error');
 });
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 8000;
 
-app.listen(port, function () {
+server.listen(port, function () {
     console.log("Server's working at: http://localhost:" + port);
 });
