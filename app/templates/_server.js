@@ -1,24 +1,38 @@
-var Q = require("q");
-var express = require('express');
-var routes = require('./routes/routes.js');
+/*jslint node: true */
+'use strict';
 
-var defer = Q.defer();
-var promise = defer.promise;
+var Q             = require("q"),
+    http          = require('http'),
+    crypto        = require('crypto'),
+    express       = require('express'),
+    routes        = require('./routes/routes.js')(),
+    serverHandler = require('./tools/serverHandler.js')(http),
+    morgan        = require('morgan'),
+    bodyParser    = require('body-parser'),
 
+    defer         = Q.defer(),
+    promise       = defer.promise,
 
+    app           = express(),
 
+    server        = http.createServer(app),
+    io            = require('socket.io').listen(server),
+
+    ioclient      = require('socket.io-client'),
+    demoClientSIO = require('./tools/demoClientSIO.js')(ioclient),
+
+    socketsOpened = {};
 
 // Promise example.
 
-promise.then(function(val) {
+promise.then(function (val) {
     console.log("val:", val);
     if (val > 10) {
         return true;
-    } else {
-        return false;
-    };
-}, function(err) {
-    console.log("Error!");
+    }
+    return false;
+}, function (err) {
+    console.log(err);
 }).then(function (val) {
     if (val) {
         console.log('Hecho!');
@@ -31,36 +45,20 @@ promise.then(function(val) {
 
 defer.resolve(42);
 
-
-
-
-
-var morgan = require('morgan');
-var bodyParser = require('body-parser');
-
-var app = express();
-
-var http = require('http');
-var server = http.createServer(app);
-var io = require('socket.io').listen(server);
-
 app.use(morgan());
 app.use(bodyParser());
-
-var socketsOpened = {};
 
 io.of('/direct').on('connection', function (socket) {
 
     socket.emit('ping');
 
-    socket.on('pong',function (data) {
+    socket.on('pong', function (data) {
         socket.unique_id = data.unique_id;
         socketsOpened[data.unique_id] = socket;
-        console.log(socketsOpened);
         console.log(data);
     });
 
-    socket.on('disconnect',function() {
+    socket.on('disconnect', function () {
         console.log('Socket disconected!');
     });
 });
@@ -73,48 +71,22 @@ app.get('/sockets/:unique_id', function (request, response) {
     response.send('Done!');
 });
 
-
-var serverHandler = {
-    testCall: function () {
-        var options = {
-            host: '10.110.2.142',
-            port: 80,
-            path: '/admin/users',
-            method: 'GET'
-        };
-
-        var req = http.request(options, function (res) {
-            console.log('STATUS: ' + res.statusCode);
-            console.log('HEADERS: ' + JSON.stringify(res.headers));
-            res.setEncoding('utf8');
-            res.on('data', function (chunk) {
-                console.log('BODY: ' + chunk);
-            });
-        });
-
-        req.on('error', function(e) {
-            console.log('problem with request: ' + e.message);
-        });
-
-        req.end();
-    }
-};
-
 serverHandler.testCall();
+demoClientSIO.testSocket();
 
-
-
-
-
-app.use(function (req, res, next) {
+/*jslint unparam: true */
+app.use(function (err, req, res, next) {
     res.send(404, 'Error 404');
 });
+/*jslint unparam: false */
 
+/*jslint unparam: true */
 app.use(function (err, req, res, next) {
-    res.send(500, 'Server error');
+    res.send(500, 'Server error' + err);
 });
+/*jslint unparam: false */
 
-var port = process.env.PORT || 8000;
+var port = process.env.PORT || 5000;
 
 server.listen(port, function () {
     console.log("Server's working at: http://localhost:" + port);

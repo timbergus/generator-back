@@ -56,11 +56,11 @@ var BackGenerator = yeoman.generators.Base.extend({
   app: function () {
     this.template('_server.js', 'server.js');
     this.template('_routes.js', 'routes/routes.js');
+    this.template('_serverHandler.js', 'tools/serverHandler.js');
 
-    this.copy('client001.js', 'client001.js');
-    this.copy('client002.js', 'client002.js');
+    this.template('_demoClientSIO.js', 'tools/demoClientSIO.js');
 
-    this.template('_e2e.spec.js', 'spec/e2e.spec.js');
+    this.template('_restapi.spec.js', 'spec/restapi.spec.js');
 
     this.template('_package.json', 'package.json');
     this.template('_gruntfile.js', 'gruntfile.js');

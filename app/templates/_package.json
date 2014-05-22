@@ -29,7 +29,10 @@
     "morgan"                     : "*",
     "socket.io"                  : "*",
     "socket.io-client"           : "*",
-    "q"                          : "*"
+    "q"                          : "*",
+    "jasmine-node"               : "*",
+    "grunt-jasmine-node"         : "*",
+    "request"                    : "*"
   },
   "engines": {
     "node": ">=0.8.0"

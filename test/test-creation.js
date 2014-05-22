@@ -20,7 +20,15 @@ describe('back generator', function () {
   it('creates expected files', function (done) {
     var expected = [
       '../../.travis.yml',
-      '../../app/templates/_package.json'
+      '../../README.md',
+      '../../package.json',
+      '../../app/templates/_demoClientSIO.js',
+      '../../app/templates/_gruntfile.js',
+      '../../app/templates/_package.json',
+      '../../app/templates/_restapi.spec.js',
+      '../../app/templates/_routes.js',
+      '../../app/templates/_server.js',
+      '../../app/templates/_serverHandler.js'
     ];
 
     helpers.mockPrompt(this.app, {
