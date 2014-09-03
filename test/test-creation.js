@@ -3,14 +3,14 @@
 var path = require('path');
 var helpers = require('yeoman-generator').test;
 
-describe('back generator', function () {
+describe('front generator', function () {
   beforeEach(function (done) {
     helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
       if (err) {
         return done(err);
       }
 
-      this.app = helpers.createGenerator('back:app', [
+      this.app = helpers.createGenerator('front:app', [
         '../../app'
       ]);
       done();
@@ -20,15 +20,23 @@ describe('back generator', function () {
   it('creates expected files', function (done) {
     var expected = [
       '../../.travis.yml',
-      '../../README.md',
       '../../package.json',
-      '../../app/templates/_demoClientSIO.js',
+      '../../README.md',
+      '../../app/templates/_application.js',
+      '../../app/templates/_bower.json',
+      '../../app/templates/_content.html',
+      '../../app/templates/_ContentController.js',
+      '../../app/templates/_ContentController.spec.js',
       '../../app/templates/_gruntfile.js',
+      '../../app/templates/_index.html',
+      '../../app/templates/_e2e.spec.js',
       '../../app/templates/_package.json',
-      '../../app/templates/_restapi.spec.js',
-      '../../app/templates/_routes.js',
-      '../../app/templates/_server.js',
-      '../../app/templates/_serverHandler.js'
+      '../../app/templates/image_a.jpg',
+      '../../app/templates/image_b.jpg',
+      '../../app/templates/image_c.jpg',
+      '../../app/templates/karma.config.js',
+      '../../app/templates/protractor.config.js',
+      '../../app/templates/_README.md'
     ];
 
     helpers.mockPrompt(this.app, {

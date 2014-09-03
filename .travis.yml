@@ -3,5 +3,5 @@ node_js:
   - '0.10'
 before_install:
   - currentfolder=${PWD##*/}
-  - if [ "$currentfolder" != 'generator-back' ]; then cd .. && eval "mv $currentfolder generator-back" && cd generator-back; fi
+  - if [ "$currentfolder" != 'generator-front' ]; then cd .. && eval "mv $currentfolder generator-front" && cd generator-front; fi
 

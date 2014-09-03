@@ -1,0 +1,66 @@
+<div id="home_contents">
+  <div class="container" style="margin-top: 1em;">
+    <div class="row">
+      <div class="col-md-12">
+        <alert ng-repeat="alert in alerts" type="{{ alert.type }}" close="closeAlert($index)">{{ alert.msg }}</alert>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" style="margin-top: 1em;">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="jumbotron">
+          <h1>{{ content.title }}</h1>
+          <p>{{ content.description }}</p>
+          <p><a class="btn btn-primary btn-lg" role="button">{{ content.version }}</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" style="margin-top: 1em;">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-info myCustomClass">
+          {{ 'MY_CONTENT' | translate }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+          <img data-src="holder.js/300x200" alt="300x200" src="images/image_a.jpg" style="width: 300px; height: 200px; margin-top: 1em;">
+          <div class="caption">
+            <h3><i class="fa fa-hand-o-right"></i> Thumbnail label</h3>
+            <p><i class="fa fa-music"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt, similique non vel sit sed porro dicta quisquam in illo dolore ipsam doloribus quis sapiente at odit! Itaque, facilis assumenda illum?</p>
+            <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+          <img data-src="holder.js/300x200" alt="300x200" src="images/image_b.jpg" style="width: 300px; height: 200px; margin-top: 1em;">
+          <div class="caption">
+            <h3><i class="fa fa-hand-o-right"></i> Thumbnail label</h3>
+            <p><i class="fa fa-music"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt, similique non vel sit sed porro dicta quisquam in illo dolore ipsam doloribus quis sapiente at odit! Itaque, facilis assumenda illum?</p>
+            <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+          <img data-src="holder.js/300x200" alt="300x200" src="images/image_c.jpg" style="width: 300px; height: 200px; margin-top: 1em;">
+          <div class="caption">
+            <h3><i class="fa fa-hand-o-right"></i> Thumbnail label</h3>
+            <p><i class="fa fa-music"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt, similique non vel sit sed porro dicta quisquam in illo dolore ipsam doloribus quis sapiente at odit! Itaque, facilis assumenda illum?</p>
+            <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
