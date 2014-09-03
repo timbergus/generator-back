@@ -20,10 +20,10 @@
     "app"
   ],
   "keywords": [
+    "yeoman-generator",
     "rest",
     "hapi",
     "node",
-    "yeoman-generator",
     "mongodb",
     "redis",
     "mongoose"

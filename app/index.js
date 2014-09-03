@@ -22,25 +22,25 @@ var util = require('util'),
             this.log(this.yeoman);
 
             // replace it with a short and sweet description of your generator
-            this.log(chalk.magenta('You\'re using the fantastic Front generator.'));
+            this.log(chalk.magenta('You\'re using the fantastic Back generator.'));
 
             var prompts = [{
                 type: 'input',
                 name: 'appName',
-                message: 'How do you want to call your application?',
-                default: 'My Cool App'
+                message: 'How do you want to call your REST API?',
+                default: 'My Cool REST API'
             },
             {
                 type: 'input',
                 name: 'appDescription',
-                message: 'What does your application do?',
-                default: 'Cool things!'
+                message: 'What does your REST API do?',
+                default: 'It serves the world!'
             },
             {
                 type: 'input',
                 name: 'appVersion',
-                message: 'Which is you application version?',
-                default: '0.1.0'
+                message: 'Which is you REST API version?',
+                default: '0.0.1'
             }];
 
             this.prompt(prompts, function (props) {
