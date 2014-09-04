@@ -1,44 +1,29 @@
 {
   "name": "<%= _.slugify(appName) %>",
-  "description": "<%= appDescription %>",
   "version": "<%= appVersion %>",
+  "description": "<%= appDescription %>",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hapi",
+    "server",
+    "rest",
+    "mongodb",
+    "mongoose",
+    "redis"
+  ],
+  "author": "Gustavo Muñoz",
+  "license": "MIT",
   "private": true,
-  "repository": {
-    "type": "git",
-    "url": ""
-  },
-  "devDependencies": {
-    "grunt"                      : "*",
-    "bower"                      : "*",
-    "grunt-contrib-cssmin"       : "*",
-    "grunt-contrib-less"         : "*",
-    "grunt-contrib-sass"         : "*",
-    "grunt-cssc"                 : "*",
-    "grunt-jslint"               : "*",
-    "grunt-contrib-uglify"       : "*",
-    "grunt-htmlhint"             : "*",
-    "grunt-contrib-htmlmin"      : "*",
-    "grunt-contrib-watch"        : "*",
-    "grunt-contrib-copy"         : "*",
-    "grunt-contrib-clean"        : "*",
-    "grunt-contrib-concat"       : "*",
-    "matchdep"                   : "*",
-    "grunt-docco"                : "*",
-    "karma"                      : "~0.10",
-    "grunt-karma"                : "~0.6.2",
-    "karma-junit-reporter"       : "~0.1",
-    "grunt-protractor-runner"    : "*",
-    "grunt-protractor-webdriver" : "*",
-    "connect-livereload"         : "*",
-    "grunt-contrib-connect"      : "*",
-    "grunt-open"                 : "*",
-    "moment"                     : "*",
-    "grunt-usemin"               : "*",
-    "grunt-contrib-csslint"      : "*",
-    "time-grunt"                 : "*",
-    "grunt-ngdocs"               : "*"
-  },
-  "engines": {
-    "node": ">=0.8.0"
+  "dependencies": {
+    "bcrypt": "*",
+    "good": "*",
+    "hapi": "*",
+    "hiredis": "*",
+    "joi": "*",
+    "mongoose": "*",
+    "redis": "*"
   }
 }

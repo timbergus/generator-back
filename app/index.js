@@ -4,13 +4,13 @@ var util = require('util'),
     path = require('path'),
     yeoman = require('yeoman-generator'),
     chalk = require('chalk'),
-    FrontGenerator = yeoman.generators.Base.extend({
+    BackGenerator = yeoman.generators.Base.extend({
         init: function () {
             this.pkg = require('../package.json');
 
             this.on('end', function () {
                 if (!this.options['skip-install']) {
-                    this.installDependencies();
+                    this.npmInstall();
                 }
             });
         },
@@ -53,39 +53,38 @@ var util = require('util'),
 
         app: function () {
 
-            this.mkdir('app/templates');
-            this.mkdir('app/js/filters');
-            this.mkdir('app/js/services');
-            this.mkdir('app/js/directives');
+            // First we are going to create the necessary folders
+            // 
+            // * routes
+            // * models
 
-            this.template('_README.md', 'README.md');
+            this.mkdir('routes');
+            this.mkdir('models');
 
-            this.template('_index.html', 'app/index.html');
-            this.template('_content.html', 'app/partials/content.html');
+            // Now we are going to move every file into its folder
+            // 
+            // * Into the root folder
 
-            this.copy('es.json', 'app/translations/es.json');
-            this.copy('en.json', 'app/translations/en.json');
+            this.template('_README.md'    , 'README.md');
+            this.template('_server.js'    , 'server.js');
+            this.template('_routes.js'    , 'routes.js');
+            this.template('_package.json' , 'package.json');
+            this.template('_gruntfile.js' , 'gruntfile.js');
+            this.template('_database.js'  , 'database.js');
+            this.template('_config.js'    , 'config.js');
 
-            this.copy('image_a.jpg', 'app/images/image_a.jpg');
-            this.copy('image_b.jpg', 'app/images/image_b.jpg');
-            this.copy('image_c.jpg', 'app/images/image_c.jpg');
+            // * Into the routes folder
 
-            this.copy('custom.scss', 'app/scss/custom.scss');
-            this.copy('_colors.scss', 'app/scss/_colors.scss');
+            this.template('_admin.js'     , 'routes/admin.js');
+            this.template('_users.js'     , 'routes/users.js');
+            this.template('_example.js'   , 'routes/example.js');
 
-            this.template('_application.js', 'app/js/application.js');
-            this.template('_ContentController.js', 'app/js/controllers/ContentController.js');
+            // * Into de models folder
 
-            this.template('_e2e.spec.js', 'spec/e2e.spec.js');
-            this.template('_ContentController.spec.js', 'spec/ContentController.spec.js');
+            this.template('_models.js'    , 'models/models.js');
 
-            this.copy('karma.config.js', 'karma.config.js');
-            this.copy('protractor.config.js', 'protractor.config.js');
-
-            this.template('_bower.json', 'bower.json');
-            this.template('_gruntfile.js', 'gruntfile.js');
-            this.template('_package.json', 'package.json');
+            // For the moment we are not going to make tests
         }
     });
 
-module.exports = FrontGenerator;
+module.exports = BackGenerator;
