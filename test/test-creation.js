@@ -19,24 +19,21 @@ describe('back generator', function () {
 
   it('creates expected files', function (done) {
     var expected = [
+      '../../.gitignore',
       '../../.travis.yml',
       '../../package.json',
       '../../README.md',
-      '../../app/templates/_application.js',
-      '../../app/templates/_bower.json',
-      '../../app/templates/_content.html',
-      '../../app/templates/_ContentController.js',
-      '../../app/templates/_ContentController.spec.js',
+      '../../app/templates/_admin.js',
+      '../../app/templates/_config.js',
+      '../../app/templates/_database.js',
+      '../../app/templates/_example.js',
       '../../app/templates/_gruntfile.js',
-      '../../app/templates/_index.html',
-      '../../app/templates/_e2e.spec.js',
+      '../../app/templates/_models.js',
       '../../app/templates/_package.json',
-      '../../app/templates/image_a.jpg',
-      '../../app/templates/image_b.jpg',
-      '../../app/templates/image_c.jpg',
-      '../../app/templates/karma.config.js',
-      '../../app/templates/protractor.config.js',
-      '../../app/templates/_README.md'
+      '../../app/templates/_README.md',
+      '../../app/templates/_routes.js',
+      '../../app/templates/_server.js',
+      '../../app/templates/_users.js'
     ];
 
     helpers.mockPrompt(this.app, {
