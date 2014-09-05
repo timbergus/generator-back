@@ -28,7 +28,7 @@
         handler: function (request, reply) {
             Database.auth(request, reply, function () {
                 new User(request.payload).save();
-                response.send('Insertion successful!');
+                reply('Insertion successful!');
             });
         }
     };
@@ -36,21 +36,20 @@
     exports.put_users = {
         handler: function (request, reply) {
             Database.auth(request, reply, function () {
-                User.find({id: request.params.id})
-                .exec(function (err, users) {
+                User.findOne({ username: request.params.username })
+                .exec(function (err, user) {
                     if (err) throw err;
-                    users.forEach(function (user) {
-                        user.name = request.body.name;
-                        user.surname = request.body.surname;
-                        user.site = request.body.site;
-                        user.company = request.body.company;
-                        user.about = request.body.about;
-                        user.preferences = request.body.preferences;
-                        user.favorites = request.body.favorites;
+                    if (user) {
+                        user.name     = request.payload.name;
+                        user.surname  = request.payload.surname;
+                        user.email    = request.payload.email;
+                        user.password = request.payload.password;
                         user.save(function () {
                             reply(user);
                         });
-                    });
+                    } else {
+                        reply('User not found!').code(404);
+                    }
                 });
             });
         }
@@ -59,7 +58,8 @@
     exports.delete_users = {
         handler: function (request, reply) {
             Database.auth(request, reply, function () {
-                User.findByIdAndRemove(request.params.id, function (err) {
+                User.findOne({ username: request.params.username })
+                .remove(function (err) {
                     if (err) throw err;
                     reply('Entry deleted!');
                 });
