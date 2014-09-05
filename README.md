@@ -78,7 +78,7 @@ Or create, update and delete once loged. Because we are going to make a lot of s
 
 ###### GET
 
-´´´
+```
 http://localhost:5000/users
 ```
 
