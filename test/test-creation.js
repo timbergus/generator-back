@@ -33,6 +33,7 @@ describe('back generator', function () {
       '../../app/templates/_README.md',
       '../../app/templates/_routes.js',
       '../../app/templates/_server.js',
+      '../../app/templates/_siotest.js',
       '../../app/templates/_users.js'
     ];
 
