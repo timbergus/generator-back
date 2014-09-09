@@ -188,10 +188,27 @@ The modules we have used here are the following:
 * [redis](https://github.com/mranney/node_redis) : The Redis connection for Node.js.
 * [hiredis](https://github.com/mranney/node_redis) : The Redis tools.
 
-## GRUNT Workflow
+## Websocket API
+
+I have included a Socked.io implementation in `database.js` where we can open websockets and where we define the calls that are going to be listened by the sockets.
+
+Right now we have an interval that emits a __ping__ message and two message listeners:
+
+* pong
+* disconnect
+
+Whenever you emit form the client this messages, the websocket is going to react.
+
+To test all this, I have created a `siotest.js` that uses `socket.io-client` to emit messages to our server and that listen to our server emits. Just launch the server and the test client, and see the result in the terminal.
+
+* First terminal: `nodemon server.js`
+* Second terminal: `nodemon siotest.js`
+
+Just comment the sockets lines in the `database.js` if you are not going to use websockets.
+
+## GRUNT Work-flow
 
 > Under construction...
-
 
 ## License
 

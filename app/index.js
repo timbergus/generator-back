@@ -67,6 +67,7 @@ var util = require('util'),
 
             this.template('_README.md'    , 'README.md');
             this.template('_server.js'    , 'server.js');
+            this.template('_siotest.js'   , 'siotest.js');
             this.template('_routes.js'    , 'routes.js');
             this.template('_package.json' , 'package.json');
             this.template('_gruntfile.js' , 'gruntfile.js');

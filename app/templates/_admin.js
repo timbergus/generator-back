@@ -3,7 +3,7 @@
     var Database = require('../database');
     var User = Database.models['user'];
     var Crypto = require('crypto');
- 
+
     exports.login = {
         handler: function (request, reply) {
             User.findOne({ username: request.query.username })

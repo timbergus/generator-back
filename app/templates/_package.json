@@ -18,12 +18,14 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "bcrypt": "*",
-    "good": "*",
-    "hapi": "*",
-    "hiredis": "*",
-    "joi": "*",
-    "mongoose": "*",
-    "redis": "*"
+    "bcrypt"           : "*",
+    "good"             : "*",
+    "hapi"             : "*",
+    "hiredis"          : "*",
+    "joi"              : "*",
+    "mongoose"         : "*",
+    "redis"            : "*",
+    "socket.io"        : "*",
+    "socket.io-client" : "*"
   }
 }

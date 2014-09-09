@@ -81,7 +81,6 @@ var authenticate = function (reply, password, stored_password, callback) {
         if (err) {
             throw err;
         }
-
         if (isValid) {
             callback();
         } else {
@@ -92,3 +91,24 @@ var authenticate = function (reply, password, stored_password, callback) {
 
 exports.genpass = genpass;
 exports.authenticate = authenticate;
+
+// WEBSOCKETS
+
+var io = require('socket.io').listen(3000);
+
+io.sockets.on('connection', function (socket) {
+
+    setInterval(function () {
+        socket.emit('ping', 'PING!!');
+    }, 2000);
+
+    socket.on('pong', function (message) {
+        console.log(message);
+    });
+
+    socket.on('disconnect',function() {
+        console.log('Socket disconnected!');
+    });
+});
+
+exports.io = io;
