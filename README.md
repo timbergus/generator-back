@@ -190,21 +190,12 @@ The modules we have used here are the following:
 
 ## Websocket API
 
-I have included a Socked.io implementation in `database.js` where we can open websockets and where we define the calls that are going to be listened by the sockets.
+When we launch the test client `siotest.js` that use `socket.io-client`, we create a new websocket with the server and to test it we just need to use two services that emit two messages to the client that responds and match two listeners in the server:
 
-Right now we have an interval that emits a __ping__ message and two message listeners:
+* http://localhost:5000/ping
+* http://localhost:5000/pang
 
-* pong
-* disconnect
-
-Whenever you emit form the client this messages, the websocket is going to react.
-
-To test all this, I have created a `siotest.js` that uses `socket.io-client` to emit messages to our server and that listen to our server emits. Just launch the server and the test client, and see the result in the terminal.
-
-* First terminal: `nodemon server.js`
-* Second terminal: `nodemon siotest.js`
-
-Just comment the sockets lines in the `database.js` if you are not going to use websockets.
+Just launch the server and the test client, and use the explorer to visit the two addresses.
 
 ## GRUNT Work-flow
 

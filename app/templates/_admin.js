@@ -1,5 +1,7 @@
 (function () {
 
+    'use strict';
+
     var Database = require('../database');
     var User = Database.models['user'];
     var Crypto = require('crypto');

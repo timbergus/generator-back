@@ -1,4 +1,7 @@
 (function () {
+
+    'use strict';
+    
     var Database = require('../database');
     var Users = Database.models['user'];
  

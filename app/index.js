@@ -78,6 +78,7 @@ var util = require('util'),
 
             this.template('_admin.js'     , 'routes/admin.js');
             this.template('_users.js'     , 'routes/users.js');
+            this.template('_sio.js'       , 'routes/sio.js');
             this.template('_example.js'   , 'routes/example.js');
 
             // * Into de models folder

@@ -6,3 +6,8 @@ socket.on('ping', function (message) {
     console.log(message);
     socket.emit('pong', 'PONG!!');
 });
+
+socket.on('pang', function (message) {
+    console.log(message);
+    socket.emit('pung', 'PUNG!!');
+});
