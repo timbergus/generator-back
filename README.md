@@ -1,4 +1,10 @@
-# Generator-Back [![Build Status](https://secure.travis-ci.org/timbergus/generator-back.png?branch=master)](https://travis-ci.org/timbergus/generator-back) [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Generator-Back
+
+[![Build Status](https://secure.travis-ci.org/timbergus/generator-back.png?branch=master)](https://travis-ci.org/timbergus/generator-back)
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+[![Stories in Ready](https://badge.waffle.io/timbergus/generator-back.svg?label=ready&title=Ready)](http://waffle.io/timbergus/generator-back)
+[![Dependency Status](https://david-dm.org/timbergus/generator-back.svg)](https://david-dm.org/timbergus/generator-back)
+[![devDependency Status](https://david-dm.org/timbergus/generator-back/dev-status.svg)](https://david-dm.org/timbergus/generator-back#info=devDependencies)
 
 > Backend generator for [Yeoman](http://yeoman.io) with [Hapi.js](http://hapijs.com/) and other cool stuff :)
 
