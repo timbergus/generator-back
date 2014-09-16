@@ -5,6 +5,8 @@ var Routes = require('./routes');
 
 var server = new Hapi.Server('localhost', parseInt(process.env.PORT, 10) || 5000, {
 	cors: {
+        origin: ['*'],
+        additionalHeaders: ['username', 'token'],
         additionalMethods: ['PATCH']
     }
 });
