@@ -15,12 +15,21 @@
                         reply(user);
                     });
                 } else {
-                    User.find({})
-                    .sort('name')
-                    .exec(function (err, users) {
-                        if (err) throw err;
-                        reply(users);
-                    });
+                    if (request.query.name) {
+                        User.find({ name: request.query.name })
+                        .sort('name')
+                        .exec(function (err, users) {
+                            if (err) throw err;
+                            reply(users);
+                        });
+                    } else {
+                        User.find({})
+                        .sort('name')
+                        .exec(function (err, users) {
+                            if (err) throw err;
+                            reply(users);
+                        });
+                    }
                 }
             });
         }

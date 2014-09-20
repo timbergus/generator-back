@@ -3,7 +3,7 @@
     'use strict';
     
     var Database = require('../database');
-    var Users = Database.models['user'];
+    var Users = Database.models.user;
  
     exports.reset = {
         handler: function (request, reply) {
