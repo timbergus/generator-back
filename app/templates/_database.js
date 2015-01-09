@@ -4,33 +4,23 @@
     
     var Mongoose = require('mongoose');
     var Redis = require('redis');
-    var Bcrypt = require('Bcrypt');
+    var Bcrypt = require('bcrypt-nodejs');
     var Config = require('./config');
+    var RedisClient = {};
 
     // Local connection.
 
-    Mongoose.connect('mongodb://' + Config.mongo.url + '/' + Config.mongo.database);
-
-    var RedisClient = Redis.createClient();
-
-    // Remote connection.
-
-    // Mongoose.connect('mongodb://' +
-    //                 Config.mongo.username +
-    //                 ':' +
-    //                 Config.mongo.password +
-    //                 '@' +
-    //                 Config.mongo.url +
-    //                 '/' +
-    //                 Config.mongo.database);
-
-    // var RedisClient = Redis.createClient(15488, Config.redis.url, {
-    //     no_ready_check: true
-    // });
-      
-    // RedisClient.auth(Config.redis.auth, function() {
-    //     console.log('Redis client connected');
-    // });
+    if (Config.mongo.username.length <= 0) {
+        Mongoose.connect('mongodb://' + Config.mongo.url + '/' + Config.mongo.database);
+        RedisClient = Redis.createClient();
+    } else {
+        Mongoose.connect('mongodb://' + Config.mongo.username + ':' + Config.mongo.password + '@' + Config.mongo.url + '/' + Config.mongo.database);
+        /*RedisClient = Redis.createClient(15488, Config.redis.url, { no_ready_check: true });
+        RedisClient.auth(Config.redis.auth, function() {
+            console.log('Redis client connected');
+        });*/
+        RedisClient = Redis.createClient();
+    }
 
     var db = Mongoose.connection;
 
@@ -70,7 +60,10 @@
 
     var genpass = function (password, callback) {
         Bcrypt.genSalt(10, function(err, salt) {
-            Bcrypt.hash(password, salt, function(err, hash) {
+            if (err) {
+                throw err;
+            }
+            Bcrypt.hash(password, salt, null, function(err, hash) {
                 if (err) {
                     throw err;
                 }
@@ -116,4 +109,4 @@
     });
 
     exports.io = io;
-})();
+}());

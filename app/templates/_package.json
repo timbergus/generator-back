@@ -1,31 +1,43 @@
 {
-  "name": "<%= _.slugify(appName) %>",
-  "version": "<%= appVersion %>",
-  "description": "<%= appDescription %>",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "hapi",
-    "server",
-    "rest",
-    "mongodb",
-    "mongoose",
-    "redis"
-  ],
-  "author": "Gustavo Muñoz",
-  "license": "MIT",
-  "private": true,
-  "dependencies": {
-    "bcrypt"           : "*",
-    "good"             : "*",
-    "hapi"             : "*",
-    "hiredis"          : "*",
-    "joi"              : "*",
-    "mongoose"         : "*",
-    "redis"            : "*",
-    "socket.io"        : "*",
-    "socket.io-client" : "*"
-  }
+    "name": "<%= _.slugify(appName) %>",
+    "description": "<%= appDescription %>",
+    "version": "<%= appVersion %>",
+    "main": "server.js",
+    "private": true,
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "back",
+        "yeoman",
+        "generator",
+        "hapi",
+        "server",
+        "rest",
+        "mongodb",
+        "mongoose",
+        "redis"
+    ],
+    "author": "Gustavo Muñoz",
+    "license": "MIT",
+    "dependencies": {
+        "bcrypt-nodejs"    : "*",
+        "good"             : "*",
+        "good-console"     : "*",
+        "good-http"        : "*",
+        "hapi"             : "*",
+        "hiredis"          : "*",
+        "joi"              : "*",
+        "mongoose"         : "*",
+        "redis"            : "*",
+        "socket.io"        : "*",
+        "socket.io-client" : "*"
+    },
+    "engines": {
+        "node": ">=0.8.0"
+    }
 }

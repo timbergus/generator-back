@@ -15,4 +15,4 @@
             Database.io.emit('pang', 'PANG!!');
         }
     };
-})();
+}());

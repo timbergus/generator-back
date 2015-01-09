@@ -27,7 +27,6 @@ describe('back generator', function () {
       '../../app/templates/_config.js',
       '../../app/templates/_database.js',
       '../../app/templates/_example.js',
-      '../../app/templates/_gruntfile.js',
       '../../app/templates/_models.js',
       '../../app/templates/_package.json',
       '../../app/templates/_README.md',

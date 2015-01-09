@@ -39,7 +39,7 @@
         handler: function (request, reply) {
             Database.auth(request, reply, function () {
                 new User(request.payload).save();
-                reply('Insertion successful!');
+                reply('Insertion successful!').code(200);
             });
         }
     };
@@ -77,4 +77,4 @@
             });
         }
     };
-})();
+}());

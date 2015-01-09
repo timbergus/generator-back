@@ -1,33 +1,51 @@
-var Hapi = require('hapi');
-var Good = require('good');
+(function () {
 
-var Routes = require('./routes');
+    'use strict';
 
-var server = new Hapi.Server('localhost', parseInt(process.env.PORT, 10) || 5000, {
-	cors: {
-        origin: ['*'],
-        additionalHeaders: ['username', 'token'],
-        additionalMethods: ['PATCH']
-    }
-});
+    var Hapi    = require('hapi'),
+        Good    = require('good'),
+        Console = require('good-console'),
+        Routes  = require('./routes'),
+        server  = new Hapi.Server();
 
-// Just for the log of the server.
+    server.connection({
+        host: 'localhost',
+        port: parseInt(process.env.PORT, 10) || 5000,
+        routes: {
+            cors: {
+                origin: ['*'],
+                additionalHeaders: ['username', 'token'],
+                additionalMethods: ['PATCH']
+            }
+        }
+    });
 
-server.pack.register(Good, function (err) {
-    if (err) {
-        throw err;
-    }
-});
+    // Routing in three steps:
+    // 
+    // * Routing file with the REST services.
+    // * Routes file with the handlers for the REST services.
 
-// Routing in three steps:
-// 
-// * Routing file with the REST services.
-// * Routes file with the handlers for the REST services.
+    server.route(Routes.endpoints);
 
-server.route(Routes.endpoints);
+    // Just for the log of the server.
 
-// Server launch.
+    server.register({
+        register: Good,
+        options: {
+            reporters: [{
+                reporter: Console,
+                args:[{ log: '*', response: '*' }]
+            }]
+        }
+     }, function (err) {
+        if (err) {
+            console.log('Failed loading plugin');
+        }
 
-server.start(function () {
-    server.log('info', 'Server running at: ' + server.info.uri);
-});
+        // Server is launched if plugins are loaded.
+
+        server.start(function () {
+            server.log('info', 'Server running at: ' + server.info.uri);
+        });
+    });
+}());

@@ -9,6 +9,14 @@
 
     exports.endpoints = [
 
+        {
+            method: 'GET',
+            path: '/',
+            handler: function (request, reply) {
+                reply('<h1>Server Working!</h1>').code(200);
+            }
+        },
+
         { method: 'GET',    path: '/ping',              config: SIO.ping             },
         { method: 'GET',    path: '/pang',              config: SIO.pang             },
 
@@ -23,4 +31,4 @@
 
         { method: 'GET',    path: '/reset',             config: Examples.reset       }
     ];
-})();
+}());

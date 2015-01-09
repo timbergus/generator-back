@@ -31,4 +31,4 @@
             reply('Database reset!').code(200);
         }
     };
-})();
+}());
